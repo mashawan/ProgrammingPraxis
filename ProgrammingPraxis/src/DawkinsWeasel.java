@@ -2,11 +2,12 @@ import java.util.Random;
 
 public class DawkinsWeasel
 {
+	private final static String QUOTE = "Methinks it is like a weasel";
+	private final static int QUOTE_LENGTH = QUOTE.length();
 	private final static int UPPER_CASE_A = 65;
 	private final static int UPPER_CASE_Z = 90;
 	private final static int SPACE = 32;
 
-	private static String sQuote = "Methinks it is like a weasel";
 	private static Random sRandom = new Random();
 	
 	public static void main(String[] args)
@@ -14,10 +15,10 @@ public class DawkinsWeasel
 		int highScore = 0;
 		String[] attempts = new String[100];
 		
-		String attemptedQuote = generateRandomString(28);
+		String attemptedQuote = generateRandomString(QUOTE_LENGTH);
 		copyAttempts(attemptedQuote, attempts);
 
-		while (highScore < 28)
+		while (highScore < QUOTE_LENGTH)
 		{
 			mutateAttempts(attempts);
 			int batchHighScoreIndex = 0;
@@ -38,7 +39,6 @@ public class DawkinsWeasel
 			copyAttempts(attempts[batchHighScoreIndex], attempts);
 		}
 		System.out.println("Done!");
-		System.out.println(attempts[0]);
 	}
 
 	private static void copyAttempts(String attemptedQuote, String[] attempts)
@@ -101,7 +101,7 @@ public class DawkinsWeasel
 	
 	private static int compareAndScore(String attempt)
 	{
-		final String upperCaseQuote = sQuote.toUpperCase();
+		final String upperCaseQuote = QUOTE.toUpperCase();
 		char[] targetAsChars = new char[upperCaseQuote.length()];
 		
 		int count = 0;
